@@ -1,0 +1,950 @@
+{
+  "dashboard": {
+    "title": "Network Flow Overview",
+    "tags": [
+      "network-flow",
+      "odata4",
+      "grafana-reports"
+    ],
+    "timezone": "browser",
+    "schemaVersion": 39,
+    "version": 0,
+    "refresh": "auto",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "Protocol",
+          "label": "Protocol",
+          "type": "custom",
+          "multi": true,
+          "includeAll": true,
+          "query": "dns,http,https,ssh,icmp,ntp,telnet",
+          "options": [
+            {
+              "text": "All",
+              "value": "$__all",
+              "selected": true
+            },
+            {
+              "text": "dns",
+              "value": "dns",
+              "selected": false
+            },
+            {
+              "text": "http",
+              "value": "http",
+              "selected": false
+            },
+            {
+              "text": "https",
+              "value": "https",
+              "selected": false
+            },
+            {
+              "text": "ssh",
+              "value": "ssh",
+              "selected": false
+            },
+            {
+              "text": "icmp",
+              "value": "icmp",
+              "selected": false
+            },
+            {
+              "text": "ntp",
+              "value": "ntp",
+              "selected": false
+            },
+            {
+              "text": "telnet",
+              "value": "telnet",
+              "selected": false
+            }
+          ],
+          "current": {
+            "text": "All",
+            "value": "$__all"
+          }
+        },
+        {
+          "name": "Talkers",
+          "label": "Talkers",
+          "type": "custom",
+          "multi": true,
+          "includeAll": true,
+          "query": "192.0.2.10,192.0.2.11,192.0.2.12,192.0.2.20,198.51.100.5,198.51.100.6,198.51.100.7,203.0.113.30,203.0.113.31,203.0.113.40",
+          "options": [
+            {
+              "text": "All",
+              "value": "$__all",
+              "selected": true
+            },
+            {
+              "text": "192.0.2.10",
+              "value": "192.0.2.10",
+              "selected": false
+            },
+            {
+              "text": "192.0.2.11",
+              "value": "192.0.2.11",
+              "selected": false
+            },
+            {
+              "text": "192.0.2.12",
+              "value": "192.0.2.12",
+              "selected": false
+            },
+            {
+              "text": "192.0.2.20",
+              "value": "192.0.2.20",
+              "selected": false
+            },
+            {
+              "text": "198.51.100.5",
+              "value": "198.51.100.5",
+              "selected": false
+            },
+            {
+              "text": "198.51.100.6",
+              "value": "198.51.100.6",
+              "selected": false
+            },
+            {
+              "text": "198.51.100.7",
+              "value": "198.51.100.7",
+              "selected": false
+            },
+            {
+              "text": "203.0.113.30",
+              "value": "203.0.113.30",
+              "selected": false
+            },
+            {
+              "text": "203.0.113.31",
+              "value": "203.0.113.31",
+              "selected": false
+            },
+            {
+              "text": "203.0.113.40",
+              "value": "203.0.113.40",
+              "selected": false
+            }
+          ],
+          "current": {
+            "text": "All",
+            "value": "$__all"
+          }
+        },
+        {
+          "name": "destination",
+          "label": "destination",
+          "type": "custom",
+          "multi": true,
+          "includeAll": true,
+          "query": "192.0.2.100,192.0.2.101,198.51.100.50,198.51.100.51,198.51.100.52,203.0.113.200,203.0.113.201,203.0.113.202,203.0.113.210,203.0.113.211",
+          "options": [
+            {
+              "text": "All",
+              "value": "$__all",
+              "selected": true
+            },
+            {
+              "text": "192.0.2.100",
+              "value": "192.0.2.100",
+              "selected": false
+            },
+            {
+              "text": "192.0.2.101",
+              "value": "192.0.2.101",
+              "selected": false
+            },
+            {
+              "text": "198.51.100.50",
+              "value": "198.51.100.50",
+              "selected": false
+            },
+            {
+              "text": "198.51.100.51",
+              "value": "198.51.100.51",
+              "selected": false
+            },
+            {
+              "text": "198.51.100.52",
+              "value": "198.51.100.52",
+              "selected": false
+            },
+            {
+              "text": "203.0.113.200",
+              "value": "203.0.113.200",
+              "selected": false
+            },
+            {
+              "text": "203.0.113.201",
+              "value": "203.0.113.201",
+              "selected": false
+            },
+            {
+              "text": "203.0.113.202",
+              "value": "203.0.113.202",
+              "selected": false
+            },
+            {
+              "text": "203.0.113.210",
+              "value": "203.0.113.210",
+              "selected": false
+            },
+            {
+              "text": "203.0.113.211",
+              "value": "203.0.113.211",
+              "selected": false
+            }
+          ],
+          "current": {
+            "text": "All",
+            "value": "$__all"
+          }
+        }
+      ]
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Traffic Distribution (Protocol)",
+        "type": "piechart",
+        "gridPos": {
+          "h": 9,
+          "w": 6,
+          "x": 0,
+          "y": 0
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and Protocol in (${Protocol:singlequote}) and SourceIP in (${Talkers:singlequote}) and DestinationIP in (${destination:singlequote})&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=20&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "Protocol",
+                "type": "string"
+              },
+              {
+                "selector": "TotalBytes",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "options": {
+          "pieType": "donut",
+          "displayLabels": [
+            "percent"
+          ],
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "values": []
+          },
+          "reduceOptions": {
+            "values": true,
+            "calcs": []
+          }
+        },
+        "fieldConfig": {
+          "defaults": {
+            "unit": "bytes"
+          },
+          "overrides": []
+        }
+      },
+      {
+        "id": 2,
+        "title": "Top Talkers",
+        "type": "bargauge",
+        "gridPos": {
+          "h": 9,
+          "w": 9,
+          "x": 6,
+          "y": 0
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and Protocol in (${Protocol:singlequote}) and SourceIP in (${Talkers:singlequote}) and DestinationIP in (${destination:singlequote})&$apply=groupby((SourceIP),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=15&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "SourceIP",
+                "type": "string"
+              },
+              {
+                "selector": "TotalBytes",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "options": {
+          "displayMode": "gradient",
+          "orientation": "horizontal",
+          "showUnfilled": true,
+          "reduceOptions": {
+            "values": true,
+            "calcs": []
+          }
+        },
+        "fieldConfig": {
+          "defaults": {
+            "unit": "bytes",
+            "color": {
+              "mode": "continuous-GrYlRd"
+            }
+          },
+          "overrides": []
+        }
+      },
+      {
+        "id": 3,
+        "title": "Total BW Usage",
+        "type": "timeseries",
+        "gridPos": {
+          "h": 9,
+          "w": 9,
+          "x": 15,
+          "y": 0
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "timeseries",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and Protocol in (${Protocol:singlequote}) and SourceIP in (${Talkers:singlequote}) and DestinationIP in (${destination:singlequote})&$apply=groupby((Timestamp),aggregate(BandwidthUtilIn with sum as BandwidthIn,BandwidthUtilOut with sum as BandwidthOut))&$orderby=Timestamp asc&$top=2000&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "Timestamp",
+                "type": "timestamp_epoch_s"
+              },
+              {
+                "selector": "BandwidthIn",
+                "type": "number"
+              },
+              {
+                "selector": "BandwidthOut",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "fillOpacity": 35,
+              "stacking": {
+                "mode": "normal"
+              }
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "BandwidthIn"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Bandwidth In"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "fixed",
+                    "fixedColor": "#5794F2"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "BandwidthOut"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Bandwidth Out"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "fixed",
+                    "fixedColor": "#FF780A"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom"
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Traffic by Protocol",
+        "type": "timeseries",
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 9
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "timeseries",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and Protocol in (${Protocol:singlequote}) and SourceIP in (${Talkers:singlequote}) and DestinationIP in (${destination:singlequote})&$apply=groupby((Timestamp,Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=Timestamp asc&$top=20000&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "Timestamp",
+                "type": "timestamp_epoch_s"
+              },
+              {
+                "selector": "Protocol",
+                "type": "string"
+              },
+              {
+                "selector": "TotalBytes",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "bytes",
+            "displayName": "${__field.labels.Protocol}",
+            "custom": {
+              "fillOpacity": 25,
+              "stacking": {
+                "mode": "normal"
+              }
+            }
+          },
+          "overrides": []
+        },
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom"
+          }
+        }
+      },
+      {
+        "id": 5,
+        "title": "Traffic by Application",
+        "type": "timeseries",
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 9
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "timeseries",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and Protocol in (${Protocol:singlequote}) and SourceIP in (${Talkers:singlequote}) and DestinationIP in (${destination:singlequote})&$apply=groupby((Timestamp,DestinationPort),aggregate(Bytes with sum as TotalBytes))&$orderby=Timestamp asc&$top=20000&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "Timestamp",
+                "type": "timestamp_epoch_s"
+              },
+              {
+                "selector": "DestinationPort",
+                "type": "string"
+              },
+              {
+                "selector": "TotalBytes",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "bytes",
+            "displayName": "${__field.labels.DestinationPort}",
+            "custom": {
+              "fillOpacity": 25,
+              "stacking": {
+                "mode": "normal"
+              }
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"0\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Unclassified-0"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"7\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "echo-7"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"22\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "ssh-22"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"23\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "telnet-23"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"53\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "dns-53"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"80\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "http-80"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"123\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "ntp-123"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"443\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "https-443"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"3389\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "rdp-3389"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalBytes {DestinationPort=\"8080\"}"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "http-alt-8080"
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom"
+          }
+        }
+      },
+      {
+        "id": 6,
+        "title": "Application Traffic Stats",
+        "type": "table",
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 18
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and Protocol in (${Protocol:singlequote}) and SourceIP in (${Talkers:singlequote}) and DestinationIP in (${destination:singlequote}) and UserDefinedOverride eq true&$apply=groupby((UserDefinedAppName,DestinationPort),aggregate(Bytes with sum as TrafficVolume,FlowCount with sum as Flows))&$orderby=TrafficVolume desc&$top=20&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "UserDefinedAppName",
+                "text": "OverrideName",
+                "type": "string"
+              },
+              {
+                "selector": "DestinationPort",
+                "type": "string"
+              },
+              {
+                "selector": "TrafficVolume",
+                "type": "number"
+              },
+              {
+                "selector": "Flows",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          },
+          {
+            "refId": "B",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and Protocol in (${Protocol:singlequote}) and SourceIP in (${Talkers:singlequote}) and DestinationIP in (${destination:singlequote}) and UserDefinedOverride eq false&$apply=groupby((ApplicationID,DestinationPort),aggregate(Bytes with sum as TrafficVolume,FlowCount with sum as Flows))&$orderby=TrafficVolume desc&$top=20&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "ApplicationID",
+                "type": "string"
+              },
+              {
+                "selector": "DestinationPort",
+                "type": "string"
+              },
+              {
+                "selector": "TrafficVolume",
+                "type": "number"
+              },
+              {
+                "selector": "Flows",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          },
+          {
+            "refId": "C",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowapplications?$select=ID,Name&$top=2000&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "ID",
+                "text": "ApplicationID",
+                "type": "string"
+              },
+              {
+                "selector": "Name",
+                "text": "CatalogName",
+                "type": "string"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "transformations": [
+          {
+            "id": "merge",
+            "filter": {
+              "id": "byRefId",
+              "options": "A|B"
+            },
+            "options": {}
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "ApplicationID",
+              "mode": "outerTabular"
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "mode": "reduceRow",
+              "reduce": {
+                "reducer": "firstNotNull",
+                "include": [
+                  "OverrideName",
+                  "CatalogName"
+                ]
+              },
+              "alias": "Application"
+            }
+          },
+          {
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "fieldName": "TrafficVolume",
+                  "config": {
+                    "id": "isNotNull",
+                    "options": {}
+                  }
+                }
+              ],
+              "type": "include",
+              "match": "all"
+            }
+          },
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "renameByName": {
+                "TrafficVolume": "Traffic Volume",
+                "DestinationPort": "Port"
+              },
+              "excludeByName": {
+                "ApplicationID": true,
+                "OverrideName": true,
+                "CatalogName": true
+              },
+              "indexByName": {
+                "Application": 0,
+                "DestinationPort": 1,
+                "Flows": 2,
+                "TrafficVolume": 3
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Traffic Volume",
+                  "desc": true
+                }
+              ]
+            }
+          },
+          {
+            "id": "limit",
+            "options": {
+              "limitField": 20
+            }
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Traffic Volume"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Application"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "special",
+                      "options": {
+                        "match": "null",
+                        "result": {
+                          "text": "Unclassified"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {}
+      }
+    ]
+  },
+  "folderUid": "REPLACE_WITH_YOUR_GRAFANA_FOLDER_UID",
+  "overwrite": true
+}

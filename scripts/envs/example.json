@@ -1,0 +1,65 @@
+{
+  "grafana_base_url": "https://grafana.example.com/grafana",
+  "ds_uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID",
+  "folder_uid": "REPLACE_WITH_YOUR_GRAFANA_FOLDER_UID",
+  "top_protocols_by_interface_group_dashboard_uid": "REPLACE_WITH_A_DASHBOARD_UID",
+  "protocol_values": [
+    "dns",
+    "http",
+    "https",
+    "ssh",
+    "icmp",
+    "ntp",
+    "telnet"
+  ],
+  "source_ip_values": [
+    "192.0.2.10",
+    "192.0.2.11",
+    "192.0.2.12",
+    "192.0.2.20",
+    "198.51.100.5",
+    "198.51.100.6",
+    "198.51.100.7",
+    "203.0.113.30",
+    "203.0.113.31",
+    "203.0.113.40"
+  ],
+  "dest_ip_values": [
+    "192.0.2.100",
+    "192.0.2.101",
+    "198.51.100.50",
+    "198.51.100.51",
+    "198.51.100.52",
+    "203.0.113.200",
+    "203.0.113.201",
+    "203.0.113.202",
+    "203.0.113.210",
+    "203.0.113.211"
+  ],
+  "port_app_names": {
+    "0": "Unclassified",
+    "7": "echo",
+    "22": "ssh",
+    "23": "telnet",
+    "53": "dns",
+    "80": "http",
+    "123": "ntp",
+    "443": "https",
+    "3389": "rdp",
+    "8080": "http-alt"
+  },
+  "interface_groups": [
+    {"name": "All Interfaces", "ids": [101, 102, 103, 104, 105, 106]},
+    {"name": "All Physical Interfaces", "ids": [101, 102, 103, 104, 105, 106]},
+    {"name": "All LAN Interfaces", "ids": [101, 104]},
+    {"name": "All WAN Interfaces", "ids": [102, 103, 105, 106]}
+  ],
+  "interface_catalog": [
+    {"id": 101, "name": "ge0/0", "device": "Router-1"},
+    {"id": 102, "name": "ge0/1", "device": "Router-1"},
+    {"id": 103, "name": "ge0/2", "device": "Router-1"},
+    {"id": 104, "name": "ge0/0", "device": "Router-2"},
+    {"id": 105, "name": "ge0/1", "device": "Router-2"},
+    {"id": 106, "name": "ge0/2", "device": "Router-2"}
+  ]
+}

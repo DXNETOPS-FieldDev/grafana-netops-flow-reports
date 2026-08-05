@@ -1,0 +1,1374 @@
+{
+  "dashboard": {
+    "uid": "REPLACE_WITH_A_DASHBOARD_UID",
+    "title": "Top Protocols by Interface Group",
+    "tags": [
+      "network-flow",
+      "odata4",
+      "grafana-reports"
+    ],
+    "timezone": "browser",
+    "schemaVersion": 39,
+    "version": 0,
+    "refresh": "auto",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "InterfaceGroup",
+          "label": "Interface Group",
+          "type": "custom",
+          "multi": false,
+          "includeAll": false,
+          "query": "All Interfaces : InInterfaceID eq 101 or InInterfaceID eq 102 or InInterfaceID eq 103 or InInterfaceID eq 104 or InInterfaceID eq 105 or InInterfaceID eq 106 or OutInterfaceID eq 101 or OutInterfaceID eq 102 or OutInterfaceID eq 103 or OutInterfaceID eq 104 or OutInterfaceID eq 105 or OutInterfaceID eq 106,All Physical Interfaces : InInterfaceID eq 101 or InInterfaceID eq 102 or InInterfaceID eq 103 or InInterfaceID eq 104 or InInterfaceID eq 105 or InInterfaceID eq 106 or OutInterfaceID eq 101 or OutInterfaceID eq 102 or OutInterfaceID eq 103 or OutInterfaceID eq 104 or OutInterfaceID eq 105 or OutInterfaceID eq 106,All LAN Interfaces : InInterfaceID eq 101 or InInterfaceID eq 104 or OutInterfaceID eq 101 or OutInterfaceID eq 104,All WAN Interfaces : InInterfaceID eq 102 or InInterfaceID eq 103 or InInterfaceID eq 105 or InInterfaceID eq 106 or OutInterfaceID eq 102 or OutInterfaceID eq 103 or OutInterfaceID eq 105 or OutInterfaceID eq 106",
+          "options": [
+            {
+              "text": "All Interfaces",
+              "value": "InInterfaceID eq 101 or InInterfaceID eq 102 or InInterfaceID eq 103 or InInterfaceID eq 104 or InInterfaceID eq 105 or InInterfaceID eq 106 or OutInterfaceID eq 101 or OutInterfaceID eq 102 or OutInterfaceID eq 103 or OutInterfaceID eq 104 or OutInterfaceID eq 105 or OutInterfaceID eq 106",
+              "selected": true
+            },
+            {
+              "text": "All Physical Interfaces",
+              "value": "InInterfaceID eq 101 or InInterfaceID eq 102 or InInterfaceID eq 103 or InInterfaceID eq 104 or InInterfaceID eq 105 or InInterfaceID eq 106 or OutInterfaceID eq 101 or OutInterfaceID eq 102 or OutInterfaceID eq 103 or OutInterfaceID eq 104 or OutInterfaceID eq 105 or OutInterfaceID eq 106",
+              "selected": false
+            },
+            {
+              "text": "All LAN Interfaces",
+              "value": "InInterfaceID eq 101 or InInterfaceID eq 104 or OutInterfaceID eq 101 or OutInterfaceID eq 104",
+              "selected": false
+            },
+            {
+              "text": "All WAN Interfaces",
+              "value": "InInterfaceID eq 102 or InInterfaceID eq 103 or InInterfaceID eq 105 or InInterfaceID eq 106 or OutInterfaceID eq 102 or OutInterfaceID eq 103 or OutInterfaceID eq 105 or OutInterfaceID eq 106",
+              "selected": false
+            }
+          ],
+          "current": {
+            "text": "All Interfaces",
+            "value": "InInterfaceID eq 101 or InInterfaceID eq 102 or InInterfaceID eq 103 or InInterfaceID eq 104 or InInterfaceID eq 105 or InInterfaceID eq 106 or OutInterfaceID eq 101 or OutInterfaceID eq 102 or OutInterfaceID eq 103 or OutInterfaceID eq 104 or OutInterfaceID eq 105 or OutInterfaceID eq 106"
+          }
+        },
+        {
+          "name": "Protocol",
+          "label": "Protocol",
+          "type": "custom",
+          "multi": false,
+          "includeAll": false,
+          "query": "All : Bytes ge 0,dns : Protocol eq 'dns',http : Protocol eq 'http',https : Protocol eq 'https',ssh : Protocol eq 'ssh',icmp : Protocol eq 'icmp',ntp : Protocol eq 'ntp',telnet : Protocol eq 'telnet'",
+          "options": [
+            {
+              "text": "All",
+              "value": "Bytes ge 0",
+              "selected": true
+            },
+            {
+              "text": "dns",
+              "value": "Protocol eq 'dns'",
+              "selected": false
+            },
+            {
+              "text": "http",
+              "value": "Protocol eq 'http'",
+              "selected": false
+            },
+            {
+              "text": "https",
+              "value": "Protocol eq 'https'",
+              "selected": false
+            },
+            {
+              "text": "ssh",
+              "value": "Protocol eq 'ssh'",
+              "selected": false
+            },
+            {
+              "text": "icmp",
+              "value": "Protocol eq 'icmp'",
+              "selected": false
+            },
+            {
+              "text": "ntp",
+              "value": "Protocol eq 'ntp'",
+              "selected": false
+            },
+            {
+              "text": "telnet",
+              "value": "Protocol eq 'telnet'",
+              "selected": false
+            }
+          ],
+          "current": {
+            "text": "All",
+            "value": "Bytes ge 0"
+          }
+        }
+      ]
+    },
+    "panels": [
+      {
+        "id": 20,
+        "title": "",
+        "type": "text",
+        "gridPos": {
+          "h": 2,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "options": {
+          "mode": "html",
+          "content": "<a href=\"https://grafana.example.com/grafana/d/REPLACE_WITH_A_DASHBOARD_UID/top-protocols-by-interface-group?${InterfaceGroup:queryparam}&var-Protocol=Bytes ge 0&${__url_time_range}\" style=\"font-weight: bold;\">Clear Protocol Filter (reset to All)</a>"
+        }
+      },
+      {
+        "id": 1,
+        "title": "Traffic Distribution by Protocol",
+        "type": "piechart",
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 0,
+          "y": 2
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw})&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=20&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "Protocol",
+                "type": "string"
+              },
+              {
+                "selector": "TotalBytes",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "options": {
+          "pieType": "donut",
+          "displayLabels": [
+            "percent"
+          ],
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "values": []
+          },
+          "reduceOptions": {
+            "values": true,
+            "calcs": []
+          }
+        },
+        "fieldConfig": {
+          "defaults": {
+            "unit": "bytes",
+            "links": [
+              {
+                "title": "View Conversations for this Protocol",
+                "url": "d/REPLACE_WITH_A_DASHBOARD_UID/top-protocols-by-interface-group?${InterfaceGroup:queryparam}&var-Protocol=Protocol eq '${__data.fields[\"Protocol\"]}'&${__url_time_range}",
+                "targetBlank": false
+              }
+            ]
+          },
+          "overrides": []
+        }
+      },
+      {
+        "id": 2,
+        "title": "Top Protocols by Flow Count",
+        "type": "bargauge",
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 8,
+          "y": 2
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw})&$apply=groupby((Protocol),aggregate(FlowCount with sum as TotalFlows))&$orderby=TotalFlows desc&$top=10&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "Protocol",
+                "type": "string"
+              },
+              {
+                "selector": "TotalFlows",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "options": {
+          "displayMode": "gradient",
+          "orientation": "horizontal",
+          "showUnfilled": true,
+          "reduceOptions": {
+            "values": true,
+            "calcs": []
+          }
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-GrYlRd"
+            },
+            "links": [
+              {
+                "title": "View Conversations for this Protocol",
+                "url": "d/REPLACE_WITH_A_DASHBOARD_UID/top-protocols-by-interface-group?${InterfaceGroup:queryparam}&var-Protocol=Protocol eq '${__data.fields[\"Protocol\"]}'&${__url_time_range}",
+                "targetBlank": false
+              }
+            ]
+          },
+          "overrides": []
+        }
+      },
+      {
+        "id": 3,
+        "title": "Top Protocols by Traffic Volume",
+        "type": "bargauge",
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 16,
+          "y": 2
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw})&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=10&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "Protocol",
+                "type": "string"
+              },
+              {
+                "selector": "TotalBytes",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "options": {
+          "displayMode": "gradient",
+          "orientation": "horizontal",
+          "showUnfilled": true,
+          "reduceOptions": {
+            "values": true,
+            "calcs": []
+          }
+        },
+        "fieldConfig": {
+          "defaults": {
+            "unit": "bytes",
+            "color": {
+              "mode": "continuous-BlPu"
+            },
+            "links": [
+              {
+                "title": "View Conversations for this Protocol",
+                "url": "d/REPLACE_WITH_A_DASHBOARD_UID/top-protocols-by-interface-group?${InterfaceGroup:queryparam}&var-Protocol=Protocol eq '${__data.fields[\"Protocol\"]}'&${__url_time_range}",
+                "targetBlank": false
+              }
+            ]
+          },
+          "overrides": []
+        }
+      },
+      {
+        "id": 19,
+        "title": "Conversations by Host \u2014 Protocol: ${Protocol:text}",
+        "type": "table",
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 11
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (${Protocol:raw})&$apply=groupby((SourceIP,DestinationIP),aggregate(Bytes with sum as TrafficVolume,FlowCount with sum as Flows))&$orderby=TrafficVolume desc&$top=100&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "SourceIP",
+                "type": "string"
+              },
+              {
+                "selector": "DestinationIP",
+                "type": "string"
+              },
+              {
+                "selector": "TrafficVolume",
+                "type": "number"
+              },
+              {
+                "selector": "Flows",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "renameByName": {
+                "TrafficVolume": "Traffic Volume"
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Traffic Volume",
+                  "desc": true
+                }
+              ]
+            }
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Traffic Volume"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "type": "gauge",
+                    "mode": "basic"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "id": 4,
+        "title": "Protocol Traffic Over Time \u2014 Protocol: ${Protocol:text}",
+        "type": "timeseries",
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 20
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "timeseries",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (${Protocol:raw})&$apply=groupby((Timestamp,Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=Timestamp asc&$top=20000&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "Timestamp",
+                "type": "timestamp_epoch_s"
+              },
+              {
+                "selector": "Protocol",
+                "type": "string"
+              },
+              {
+                "selector": "TotalBytes",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "bytes",
+            "displayName": "${__field.labels.Protocol}",
+            "custom": {
+              "fillOpacity": 25,
+              "stacking": {
+                "mode": "normal"
+              }
+            }
+          },
+          "overrides": []
+        },
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom"
+          }
+        }
+      },
+      {
+        "id": 5,
+        "title": "Interfaces & Protocols \u2014 Protocol: ${Protocol:text}",
+        "type": "table",
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 29
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (${Protocol:raw}) and InInterfaceID ne -1&$apply=groupby((InInterfaceID,Protocol),aggregate(Bytes with sum as TrafficVolume,FlowCount with sum as Flows))&$orderby=TrafficVolume desc&$top=200&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "InInterfaceID",
+                "text": "InterfaceID",
+                "type": "number"
+              },
+              {
+                "selector": "Protocol",
+                "type": "string"
+              },
+              {
+                "selector": "TrafficVolume",
+                "type": "number"
+              },
+              {
+                "selector": "Flows",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          },
+          {
+            "refId": "B",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "csv",
+            "source": "url",
+            "format": "table",
+            "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (${Protocol:raw}) and OutInterfaceID ne -1&$apply=groupby((OutInterfaceID,Protocol),aggregate(Bytes with sum as TrafficVolume,FlowCount with sum as Flows))&$orderby=TrafficVolume desc&$top=200&$format=text/csv",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "",
+            "columns": [
+              {
+                "selector": "OutInterfaceID",
+                "text": "InterfaceID",
+                "type": "number"
+              },
+              {
+                "selector": "Protocol",
+                "type": "string"
+              },
+              {
+                "selector": "TrafficVolume",
+                "type": "number"
+              },
+              {
+                "selector": "Flows",
+                "type": "number"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          },
+          {
+            "refId": "C",
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "type": "json",
+            "source": "url",
+            "format": "table",
+            "url": "/flowinboundinterfaces?$expand=flowdevice($select=Name)&$select=ID,Name&$top=100&$format=json",
+            "url_options": {
+              "method": "GET"
+            },
+            "root_selector": "value",
+            "columns": [
+              {
+                "selector": "ID",
+                "text": "InterfaceID",
+                "type": "number"
+              },
+              {
+                "selector": "Name",
+                "text": "Interface",
+                "type": "string"
+              },
+              {
+                "selector": "flowdevice.Name",
+                "text": "Device",
+                "type": "string"
+              }
+            ],
+            "parser": "backend",
+            "filters": []
+          }
+        ],
+        "transformations": [
+          {
+            "id": "merge",
+            "filter": {
+              "id": "byRefId",
+              "options": "A|B"
+            },
+            "options": {}
+          },
+          {
+            "id": "joinByField",
+            "options": {
+              "byField": "InterfaceID",
+              "mode": "outerTabular"
+            }
+          },
+          {
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "fieldName": "TrafficVolume",
+                  "config": {
+                    "id": "isNotNull",
+                    "options": {}
+                  }
+                }
+              ],
+              "type": "include",
+              "match": "all"
+            }
+          },
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "renameByName": {
+                "TrafficVolume": "Traffic Volume"
+              },
+              "excludeByName": {
+                "InterfaceID": true
+              },
+              "indexByName": {
+                "Device": 0,
+                "Interface": 1,
+                "Protocol": 2,
+                "Flows": 3,
+                "TrafficVolume": 4
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "field": "Interface"
+                }
+              ]
+            }
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Traffic Volume"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "type": "gauge",
+                    "mode": "basic"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "id": 100,
+        "title": "Additional Views",
+        "type": "row",
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 39
+        },
+        "collapsed": true,
+        "panels": [
+          {
+            "id": 7,
+            "title": "Interfaces & Protocols - Heatmap Table",
+            "type": "table",
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 40
+            },
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "targets": [
+              {
+                "refId": "A",
+                "datasource": {
+                  "type": "yesoreyeram-infinity-datasource",
+                  "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+                },
+                "type": "csv",
+                "source": "url",
+                "format": "table",
+                "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and InInterfaceID ne -1&$apply=groupby((InInterfaceID,Protocol),aggregate(Bytes with sum as TrafficVolume))&$orderby=TrafficVolume desc&$top=200&$format=text/csv",
+                "url_options": {
+                  "method": "GET"
+                },
+                "root_selector": "",
+                "columns": [
+                  {
+                    "selector": "InInterfaceID",
+                    "text": "InterfaceID",
+                    "type": "number"
+                  },
+                  {
+                    "selector": "Protocol",
+                    "type": "string"
+                  },
+                  {
+                    "selector": "TrafficVolume",
+                    "type": "number"
+                  }
+                ],
+                "parser": "backend",
+                "filters": []
+              },
+              {
+                "refId": "B",
+                "datasource": {
+                  "type": "yesoreyeram-infinity-datasource",
+                  "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+                },
+                "type": "csv",
+                "source": "url",
+                "format": "table",
+                "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and OutInterfaceID ne -1&$apply=groupby((OutInterfaceID,Protocol),aggregate(Bytes with sum as TrafficVolume))&$orderby=TrafficVolume desc&$top=200&$format=text/csv",
+                "url_options": {
+                  "method": "GET"
+                },
+                "root_selector": "",
+                "columns": [
+                  {
+                    "selector": "OutInterfaceID",
+                    "text": "InterfaceID",
+                    "type": "number"
+                  },
+                  {
+                    "selector": "Protocol",
+                    "type": "string"
+                  },
+                  {
+                    "selector": "TrafficVolume",
+                    "type": "number"
+                  }
+                ],
+                "parser": "backend",
+                "filters": []
+              }
+            ],
+            "transformations": [
+              {
+                "id": "merge",
+                "filter": {
+                  "id": "byRefId",
+                  "options": "A|B"
+                },
+                "options": {}
+              },
+              {
+                "id": "filterByValue",
+                "options": {
+                  "filters": [
+                    {
+                      "fieldName": "TrafficVolume",
+                      "config": {
+                        "id": "isNotNull",
+                        "options": {}
+                      }
+                    }
+                  ],
+                  "type": "include",
+                  "match": "all"
+                }
+              },
+              {
+                "id": "merge",
+                "options": {}
+              },
+              {
+                "id": "organize",
+                "options": {
+                  "renameByName": {
+                    "TrafficVolume": "Traffic Volume"
+                  }
+                }
+              },
+              {
+                "id": "groupingToMatrix",
+                "options": {
+                  "rowField": "InterfaceID",
+                  "columnField": "Protocol",
+                  "valueField": "Traffic Volume",
+                  "emptyValue": "empty"
+                }
+              }
+            ],
+            "fieldConfig": {
+              "defaults": {},
+              "overrides": [
+                {
+                  "matcher": {
+                    "id": "byType",
+                    "options": "number"
+                  },
+                  "properties": [
+                    {
+                      "id": "unit",
+                      "value": "bytes"
+                    },
+                    {
+                      "id": "color",
+                      "value": {
+                        "mode": "continuous-GrYlRd"
+                      }
+                    },
+                    {
+                      "id": "custom.cellOptions",
+                      "value": {
+                        "type": "color-background"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "InterfaceID\\Protocol"
+                  },
+                  "properties": [
+                    {
+                      "id": "displayName",
+                      "value": "Interface"
+                    },
+                    {
+                      "id": "mappings",
+                      "value": [
+                        {
+                          "type": "value",
+                          "options": {
+                            "101": {
+                              "text": "Router-1 ge0/0"
+                            },
+                            "102": {
+                              "text": "Router-1 ge0/1"
+                            },
+                            "103": {
+                              "text": "Router-1 ge0/2"
+                            },
+                            "104": {
+                              "text": "Router-2 ge0/0"
+                            },
+                            "105": {
+                              "text": "Router-2 ge0/1"
+                            },
+                            "106": {
+                              "text": "Router-2 ge0/2"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "id": "unit",
+                      "value": "none"
+                    },
+                    {
+                      "id": "color",
+                      "value": {
+                        "mode": "fixed",
+                        "fixedColor": "text"
+                      }
+                    },
+                    {
+                      "id": "custom.cellOptions",
+                      "value": {
+                        "type": "auto"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "options": {}
+          },
+          {
+            "id": 9,
+            "title": "Router-1 ge0/0",
+            "type": "piechart",
+            "gridPos": {
+              "h": 10,
+              "w": 6,
+              "x": 0,
+              "y": 49
+            },
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "targets": [
+              {
+                "refId": "A",
+                "datasource": {
+                  "type": "yesoreyeram-infinity-datasource",
+                  "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+                },
+                "type": "csv",
+                "source": "url",
+                "format": "table",
+                "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (InInterfaceID eq 101 or OutInterfaceID eq 101)&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=20&$format=text/csv",
+                "url_options": {
+                  "method": "GET"
+                },
+                "root_selector": "",
+                "columns": [
+                  {
+                    "selector": "Protocol",
+                    "type": "string"
+                  },
+                  {
+                    "selector": "TotalBytes",
+                    "type": "number"
+                  }
+                ],
+                "parser": "backend",
+                "filters": []
+              }
+            ],
+            "options": {
+              "pieType": "donut",
+              "displayLabels": [
+                "name",
+                "percent"
+              ],
+              "legend": {
+                "showLegend": false,
+                "displayMode": "list",
+                "placement": "bottom",
+                "calcs": []
+              },
+              "reduceOptions": {
+                "values": true,
+                "calcs": []
+              },
+              "text": {
+                "titleSize": 12,
+                "valueSize": 12
+              }
+            },
+            "fieldConfig": {
+              "defaults": {
+                "unit": "bytes"
+              },
+              "overrides": []
+            }
+          },
+          {
+            "id": 10,
+            "title": "Router-1 ge0/1",
+            "type": "piechart",
+            "gridPos": {
+              "h": 10,
+              "w": 6,
+              "x": 6,
+              "y": 49
+            },
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "targets": [
+              {
+                "refId": "A",
+                "datasource": {
+                  "type": "yesoreyeram-infinity-datasource",
+                  "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+                },
+                "type": "csv",
+                "source": "url",
+                "format": "table",
+                "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (InInterfaceID eq 102 or OutInterfaceID eq 102)&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=20&$format=text/csv",
+                "url_options": {
+                  "method": "GET"
+                },
+                "root_selector": "",
+                "columns": [
+                  {
+                    "selector": "Protocol",
+                    "type": "string"
+                  },
+                  {
+                    "selector": "TotalBytes",
+                    "type": "number"
+                  }
+                ],
+                "parser": "backend",
+                "filters": []
+              }
+            ],
+            "options": {
+              "pieType": "donut",
+              "displayLabels": [
+                "name",
+                "percent"
+              ],
+              "legend": {
+                "showLegend": false,
+                "displayMode": "list",
+                "placement": "bottom",
+                "calcs": []
+              },
+              "reduceOptions": {
+                "values": true,
+                "calcs": []
+              },
+              "text": {
+                "titleSize": 12,
+                "valueSize": 12
+              }
+            },
+            "fieldConfig": {
+              "defaults": {
+                "unit": "bytes"
+              },
+              "overrides": []
+            }
+          },
+          {
+            "id": 11,
+            "title": "Router-1 ge0/2",
+            "type": "piechart",
+            "gridPos": {
+              "h": 10,
+              "w": 6,
+              "x": 12,
+              "y": 49
+            },
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "targets": [
+              {
+                "refId": "A",
+                "datasource": {
+                  "type": "yesoreyeram-infinity-datasource",
+                  "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+                },
+                "type": "csv",
+                "source": "url",
+                "format": "table",
+                "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (InInterfaceID eq 103 or OutInterfaceID eq 103)&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=20&$format=text/csv",
+                "url_options": {
+                  "method": "GET"
+                },
+                "root_selector": "",
+                "columns": [
+                  {
+                    "selector": "Protocol",
+                    "type": "string"
+                  },
+                  {
+                    "selector": "TotalBytes",
+                    "type": "number"
+                  }
+                ],
+                "parser": "backend",
+                "filters": []
+              }
+            ],
+            "options": {
+              "pieType": "donut",
+              "displayLabels": [
+                "name",
+                "percent"
+              ],
+              "legend": {
+                "showLegend": false,
+                "displayMode": "list",
+                "placement": "bottom",
+                "calcs": []
+              },
+              "reduceOptions": {
+                "values": true,
+                "calcs": []
+              },
+              "text": {
+                "titleSize": 12,
+                "valueSize": 12
+              }
+            },
+            "fieldConfig": {
+              "defaults": {
+                "unit": "bytes"
+              },
+              "overrides": []
+            }
+          },
+          {
+            "id": 12,
+            "title": "Router-2 ge0/0",
+            "type": "piechart",
+            "gridPos": {
+              "h": 10,
+              "w": 6,
+              "x": 18,
+              "y": 49
+            },
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "targets": [
+              {
+                "refId": "A",
+                "datasource": {
+                  "type": "yesoreyeram-infinity-datasource",
+                  "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+                },
+                "type": "csv",
+                "source": "url",
+                "format": "table",
+                "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (InInterfaceID eq 104 or OutInterfaceID eq 104)&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=20&$format=text/csv",
+                "url_options": {
+                  "method": "GET"
+                },
+                "root_selector": "",
+                "columns": [
+                  {
+                    "selector": "Protocol",
+                    "type": "string"
+                  },
+                  {
+                    "selector": "TotalBytes",
+                    "type": "number"
+                  }
+                ],
+                "parser": "backend",
+                "filters": []
+              }
+            ],
+            "options": {
+              "pieType": "donut",
+              "displayLabels": [
+                "name",
+                "percent"
+              ],
+              "legend": {
+                "showLegend": false,
+                "displayMode": "list",
+                "placement": "bottom",
+                "calcs": []
+              },
+              "reduceOptions": {
+                "values": true,
+                "calcs": []
+              },
+              "text": {
+                "titleSize": 12,
+                "valueSize": 12
+              }
+            },
+            "fieldConfig": {
+              "defaults": {
+                "unit": "bytes"
+              },
+              "overrides": []
+            }
+          },
+          {
+            "id": 13,
+            "title": "Router-2 ge0/1",
+            "type": "piechart",
+            "gridPos": {
+              "h": 10,
+              "w": 6,
+              "x": 0,
+              "y": 59
+            },
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "targets": [
+              {
+                "refId": "A",
+                "datasource": {
+                  "type": "yesoreyeram-infinity-datasource",
+                  "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+                },
+                "type": "csv",
+                "source": "url",
+                "format": "table",
+                "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (InInterfaceID eq 105 or OutInterfaceID eq 105)&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=20&$format=text/csv",
+                "url_options": {
+                  "method": "GET"
+                },
+                "root_selector": "",
+                "columns": [
+                  {
+                    "selector": "Protocol",
+                    "type": "string"
+                  },
+                  {
+                    "selector": "TotalBytes",
+                    "type": "number"
+                  }
+                ],
+                "parser": "backend",
+                "filters": []
+              }
+            ],
+            "options": {
+              "pieType": "donut",
+              "displayLabels": [
+                "name",
+                "percent"
+              ],
+              "legend": {
+                "showLegend": false,
+                "displayMode": "list",
+                "placement": "bottom",
+                "calcs": []
+              },
+              "reduceOptions": {
+                "values": true,
+                "calcs": []
+              },
+              "text": {
+                "titleSize": 12,
+                "valueSize": 12
+              }
+            },
+            "fieldConfig": {
+              "defaults": {
+                "unit": "bytes"
+              },
+              "overrides": []
+            }
+          },
+          {
+            "id": 14,
+            "title": "Router-2 ge0/2",
+            "type": "piechart",
+            "gridPos": {
+              "h": 10,
+              "w": 6,
+              "x": 6,
+              "y": 59
+            },
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+            },
+            "targets": [
+              {
+                "refId": "A",
+                "datasource": {
+                  "type": "yesoreyeram-infinity-datasource",
+                  "uid": "REPLACE_WITH_YOUR_INFINITY_DATASOURCE_UID"
+                },
+                "type": "csv",
+                "source": "url",
+                "format": "table",
+                "url": "/flowconversationmfs?$filter=Timestamp ge ${__from:date:seconds} and Timestamp le ${__to:date:seconds} and (${InterfaceGroup:raw}) and (InInterfaceID eq 106 or OutInterfaceID eq 106)&$apply=groupby((Protocol),aggregate(Bytes with sum as TotalBytes))&$orderby=TotalBytes desc&$top=20&$format=text/csv",
+                "url_options": {
+                  "method": "GET"
+                },
+                "root_selector": "",
+                "columns": [
+                  {
+                    "selector": "Protocol",
+                    "type": "string"
+                  },
+                  {
+                    "selector": "TotalBytes",
+                    "type": "number"
+                  }
+                ],
+                "parser": "backend",
+                "filters": []
+              }
+            ],
+            "options": {
+              "pieType": "donut",
+              "displayLabels": [
+                "name",
+                "percent"
+              ],
+              "legend": {
+                "showLegend": false,
+                "displayMode": "list",
+                "placement": "bottom",
+                "calcs": []
+              },
+              "reduceOptions": {
+                "values": true,
+                "calcs": []
+              },
+              "text": {
+                "titleSize": 12,
+                "valueSize": 12
+              }
+            },
+            "fieldConfig": {
+              "defaults": {
+                "unit": "bytes"
+              },
+              "overrides": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "folderUid": "REPLACE_WITH_YOUR_GRAFANA_FOLDER_UID",
+  "overwrite": true
+}
