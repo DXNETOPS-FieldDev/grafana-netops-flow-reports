@@ -267,7 +267,7 @@ panels.append({
 # and an NBAR branch (joined against the flowapplications catalog), each
 # pre-aggregating Flows + TrafficVolume, then stacks them (merge) and joins
 # the catalog with mode=outerTabular (string joins require this, not "outer" -
-# see the README's Grafana/Infinity integration notes), then coalesces the
+# see docs/Grafana-Infinity-Integration-Notes.md), then coalesces the
 # two name sources with calculateField/firstNotNull.
 panels.append({
     "id": 6,

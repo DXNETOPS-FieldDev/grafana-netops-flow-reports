@@ -4,8 +4,9 @@ Data model reference for the OData4 entities backing the Network Flow dashboards
 NetOps Performance Center 25.4.9. Use the real v4 endpoint (`/pc/odata4/api/`) — the legacy v2
 alias (`/pc/odata/api/`) does not expose these entities.
 
-For operational query constraints and Grafana integration patterns (e.g. `$top` requirements,
-`$apply`/`$expand` limitations, the flow history cap), see the main [README](../README.md).
+For operational query constraints (e.g. `$top` requirements, `$apply`/`$expand` limitations, the
+flow history cap), see [OData4-API-Notes.md](OData4-API-Notes.md). For Grafana/Infinity
+implementation patterns, see [Grafana-Infinity-Integration-Notes.md](Grafana-Infinity-Integration-Notes.md).
 
 ## Entities
 
@@ -27,8 +28,8 @@ For operational query constraints and Grafana integration patterns (e.g. `$top` 
 
 ## Application name resolution
 
-`ApplicationID` alone is not a reliable identifier — see the README's OData4 API notes for why,
-and for the coalesce pattern (`UserDefinedAppName` when `UserDefinedOverride` is true, otherwise
+`ApplicationID` alone is not a reliable identifier — see [OData4-API-Notes.md](OData4-API-Notes.md)
+for why, and for the coalesce pattern (`UserDefinedAppName` when `UserDefinedOverride` is true, otherwise
 the `flowapplications` catalog name, otherwise "Unclassified"). The implementation is in
 `scripts/build_flow_overview_dashboard.py`'s "Application Traffic Stats" panel.
 

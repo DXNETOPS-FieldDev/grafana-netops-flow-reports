@@ -14,9 +14,10 @@ Timestamp ge <range start> and Timestamp le <range end>
 The "Interface Group" dropdown's option value is a pre-resolved OData boolean expression for that
 group, e.g. `InInterfaceID eq 13723 or InInterfaceID eq 13724 or ... or OutInterfaceID eq 15024`
 (a group with no flow-collecting interfaces resolves to `InInterfaceID eq 0`, which never
-matches). See the main README's Grafana/Infinity integration notes for why this is expressed as a
-boolean clause rather than a comma-joined ID list, and why `flowconversationmfs`'s `groups`
-navigation property cannot be filtered directly.
+matches). See [Grafana-Infinity-Integration-Notes.md](Grafana-Infinity-Integration-Notes.md) for
+why this is expressed as a boolean clause rather than a comma-joined ID list, and
+[OData4-API-Notes.md](OData4-API-Notes.md) for why `flowconversationmfs`'s `groups` navigation
+property cannot be filtered directly.
 
 Panels 1–3 also carry a data link ("View Conversations for this Protocol") that, on click, sets
 the `Protocol` variable to a clause built from the clicked row (`Protocol eq '<clicked value>'`)

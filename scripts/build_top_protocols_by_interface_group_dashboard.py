@@ -45,7 +45,7 @@ def csv_target(refId, url, columns=None, fmt="table"):
 
 # For catalog lookups needing a nested $expand (e.g. flowdevice's Name inline
 # on an interface row) - $apply and $expand don't compose on this PC instance
-# (see the README's OData4 API notes), and CSV can't represent the resulting nested object,
+# (see docs/OData4-API-Notes.md), and CSV can't represent the resulting nested object,
 # so this uses $format=json with root_selector "value" and dotted column
 # selectors ("flowdevice.Name") instead of csv_target's flat CSV columns.
 def json_target(refId, url, columns=None):
@@ -405,8 +405,8 @@ panels.append({
 # as two rows for the same (interface, protocol) pair. This is accepted as a
 # minor cosmetic tradeoff: consolidating with a `groupBy` step requires
 # scoping it carefully to avoid corrupting the unrelated catalog frame still
-# present in the pipeline at that point (see the README's Grafana/Infinity
-# integration notes on unfiltered transform steps), and the simpler
+# present in the pipeline at that point (see docs/Grafana-Infinity-Integration-Notes.md
+# on unfiltered transform steps), and the simpler
 # structural copy of the "Application Traffic Stats" panel in Network Flow
 # Overview (merge -> join -> filter -> merge -> organize -> sort) is more
 # reliable.
